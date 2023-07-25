@@ -13,11 +13,13 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // routes
-app.use("/api",require('./routes/test'));
+app.use("/api",require('./test'));
 
 
 // starting the server
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
 });
+
+
 
