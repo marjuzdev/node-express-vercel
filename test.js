@@ -1,23 +1,24 @@
 
 const { Router } = require('express');
 
-
 const router = new Router();
 
-router.get('/test', (req, res) => {
-      console.log("call for webkook");
-      console.log("more text");
+router.get('/', (req, res) => {
 
-      console.log('req.query', JSON.stringify(req.query));
-      // console.log('req.query', req);
+  console.log(`[INFO]  Entering the endpoint '/'`);
+  try {
 
-      const {Usuario,External_Id, id, Transaccion, FechaRegistro } = req.query;
-      console.log('Usuario', Usuario);
+    res.status(200).json({
+       response: "ok"
+    });
 
-      res.json({
-        status: '200',
-        response: "ok"
-      });
+  } catch (error) {
+
+    console.log('Error test', error);
+    res.status(500).json({
+      response: "Internal error server"
+    });
+  }
 });
 
 
