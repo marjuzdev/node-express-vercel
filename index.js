@@ -19,14 +19,16 @@ app.use((req, res, next) => {
 
 app.use(
     morgan((tokens, req, res) => {
-      return [
-        `[${new Date().toISOString()}]`, // Fecha y hora exacta
-        `Request to: ${tokens.method(req, res)} ${tokens.url(req, res)}`,
-        `Status: ${tokens.status(req, res)}`,
-        `Response time: ${tokens['response-time'](req, res)} ms`,
-      ].join(' | ');
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        return [
+            `IP: ${ip}`,
+            tokens.method(req, res),
+            tokens.url(req, res),
+            tokens.status(req, res),
+            `${tokens['response-time'](req, res)} ms`
+        ].join(' || ');
     })
-  );
+);
   
 app.use(cors());
 app.use(express.urlencoded({extended: false}));
