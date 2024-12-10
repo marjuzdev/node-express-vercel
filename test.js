@@ -6,6 +6,8 @@ const router = new Router();
 router.get('/', (req, res) => {
 
   console.log(`[INFO]  Entering the endpoint '/'`);
+  console.info(`[INFO]  Entering the endpoint '/'`);
+
   try {
 
     res.status(200).json({
